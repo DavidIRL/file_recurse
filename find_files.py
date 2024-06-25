@@ -23,8 +23,12 @@ def list_files(root, ext):
         elif os.path.isdir(f'{root}/{item}'):
             file_paths.extend(list_files(root=f'{root}/{item}', ext=ext))
 
-    return file_paths
+    if len(file_paths) > 0:
+        return file_paths
+    else:
+        return f'No files with the {ext} have been found in the {root} directory tree'
 
-print(find_files('testdir', 'c'))
-print(find_files('testdir', 'h'))
 
+
+print(find_files(input('What directory do you wish to search: '),
+                 input('What file extension do you wish to find: '))
