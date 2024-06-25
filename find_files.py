@@ -26,7 +26,7 @@ def list_files(root, ext):
     if len(file_paths) > 0:
         return file_paths
     else:
-        return f'No files with the {ext} have been found in the {root} directory tree'
+        return FileExistsError(f"No files with a {ext} extension was found within the {root} directory tree")
 
 
 
