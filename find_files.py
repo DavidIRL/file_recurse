@@ -1,14 +1,17 @@
 import os
 
-def find_files(root, ext):
+#root = input('What directory do you wish to search?\n')
+#ext = input('What file extension do you wish to find?\n')
+
+def find_files(ext, root):
     if root not in os.listdir():
         return FileExistsError("Target not in current working directory")
     if not os.path.isdir(root):
         return FileExistsError("Target is not a folder/directory")
-    return list_files(root, ext)
+    return list_files(ext, root)
     
 
-def list_files(root, ext):
+def list_files(ext, root):
     if len(os.listdir(root)) == 0:
         return []
     
@@ -21,14 +24,10 @@ def list_files(root, ext):
         elif os.path.isfile(item):
             break
         elif os.path.isdir(f'{root}/{item}'):
-            file_paths.extend(list_files(root=f'{root}/{item}', ext=ext))
+            file_paths.extend(list_files(ext=ext, root=f'{root}/{item}'))
 
-    if len(file_paths) > 0:
-        return file_paths
-    else:
-        return FileExistsError(f"No files with a {ext} extension was found within the {root} directory tree")
+    return file_paths
+        
 
-
-
-print(find_files(input('What directory do you wish to search: '),
-                 input('What file extension do you wish to find: ')))
+print(find_files(input("What file extension do you wish to find?\n"),
+                 input("What directory do you want to search?\n")))
