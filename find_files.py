@@ -31,4 +31,4 @@ def list_files(root, ext):
 
 
 print(find_files(input('What directory do you wish to search: '),
-                 input('What file extension do you wish to find: '))
+                 input('What file extension do you wish to find: ')))
