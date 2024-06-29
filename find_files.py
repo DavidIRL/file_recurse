@@ -5,9 +5,9 @@ import os
 
 def find_files(ext, root):
     if root not in os.listdir():
-        return FileExistsError("Target not in current working directory")
+        raise FileExistsError("Target not in current working directory")
     if not os.path.isdir(root):
-        return FileExistsError("Target is not a folder/directory")
+        raise FileExistsError("Target is not a folder/directory")
     return list_files(ext, root)
     
 
@@ -28,6 +28,6 @@ def list_files(ext, root):
 
     return file_paths
         
-
-print(find_files(input("What file extension do you wish to find?\n"),
-                 input("What directory do you want to search?\n")))
+if __name__ == '__main__':
+    print(find_files(input("What file extension do you wish to find?\n"),
+                     input("What directory do you want to search?\n")))
